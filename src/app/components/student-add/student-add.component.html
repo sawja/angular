@@ -1,0 +1,30 @@
+<div class="container-fluid">
+  <form [formGroup]="myForm" (ngSubmit)="addStudent(myForm.value)">
+    <div class="form-group">
+      <label>First Name</label>
+      <input type="text" class="form-control" formControlName="firstName" placeholder="Enter first name" />
+      <small *ngIf="!myForm.controls['firstName'].valid" class="form-text text-muted">Invalid</small>
+    </div>
+    <div class="form-group">
+      <label>Last Name</label>
+      <input type="text" class="form-control" formControlName="lastName" placeholder="Enter last name" />
+      <small *ngIf="!myForm.controls['lastName'].valid" class="form-text text-muted">Invalid</small>
+    </div>
+    <div class="form-group">
+      <label>Index</label>
+      <input type="text" class="form-control" formControlName="index" placeholder="Enter index" />
+      <small *ngIf="!myForm.controls['index'].valid" class="form-text text-muted">Invalid</small>
+    </div>
+    <div class="form-group">
+      <label>Group Number</label>
+      <input type="number" class="form-control" formControlName="groupNumber" placeholder="Enter group number" />
+      <small *ngIf="!myForm.controls['groupNumber'].valid" class="form-text text-muted">Invalid</small>
+    </div>
+    <div class="row text-center">
+      <div class="col-sm-12 text-center">
+          <button type="submit" class="btn btn-success" [disabled]="!myForm.valid">Submit</button>
+      </div>
+  </div>
+  </form>
+  <hr>
+</div>  

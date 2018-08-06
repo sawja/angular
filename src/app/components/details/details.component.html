@@ -1,0 +1,22 @@
+<div>
+    <strong>{{student.firstName}} {{student.lastName}}</strong> 
+    <div *ngIf="student._id === selectedId">
+        <br>
+        index: ({{student.index}}), groupNumber: {{student.groupNumber}},
+        <span [ngPlural]="student.groupNumber">
+            <ng-template ngPluralCase="=1">rok</ng-template>
+            <ng-template ngPluralCase="few">lata</ng-template>
+            <ng-template ngPluralCase="other">lat</ng-template>
+        </span>, 
+        grades: 
+        [
+        <span *ngFor="let grade of student.grades">
+          <span *ngIf="grade === 2" class="negative-grade">{{grade}} </span>
+          <span *ngIf="grade > 2" class="positive-grade">{{grade}} </span>
+        </span>
+        ],
+        <strong *ngIf="student.grades.length > 0">Average: {{computeAverage(student.grades).toFixed(2)}}</strong>
+        
+    </div>
+    <hr>
+</div>

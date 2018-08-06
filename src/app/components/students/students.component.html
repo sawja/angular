@@ -1,0 +1,37 @@
+<div>
+  <div class="container-fluid students-container">
+    <div class="row">
+      <div class="col-md-3 offset-md-2 students-sidebar text-center">
+        <h4>Search</h4>
+        <input [(ngModel)]="searchPhrase" type="text" class="form-control" placeholder="Search" />
+        <hr>
+        <h4>Add a student:</h4>
+        <hr>
+        <h4>Sort by last name</h4>
+        <button (click)="sortByLastName()" class="btn btn-info">Sort</button>
+        <hr>
+        <h4>Sort by group number</h4>
+        <button (click)="sortByGroupNumber()" class="btn btn-secondary">Sort</button>
+        <hr>
+        <app-student-add (submitEvent)="addStudent($event)"></app-student-add>
+      </div>
+      <div class="col-md-5 students-content text-center">
+        <h4>Student list:</h4>
+        <hr>
+        <div *ngFor="let student of students | search: searchPhrase; index as i">
+          <button (click)="deleteStudent(student._id, i)" class="btn-sm btn-danger my-button">Delete</button>
+          <button (click)="changeEdit(student._id)" class="btn-sm btn-primary left-button">Edit</button>
+          <app-details 
+            (click)="changeSelected(student._id)" 
+            [student]="student"
+            [selectedId]="selectedStudentId">
+          </app-details>
+          <app-student-add 
+            *ngIf="student._id === showEdit"
+            (submitEvent)="updateStudent($event)">
+          </app-student-add>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
